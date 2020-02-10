@@ -113,12 +113,12 @@ def main():
 
             # calculate X-rotation matrix for given time elapsed
             matRotX = np.zeros((4,4))
-            matRotX[0][0] = 1
+            matRotX[0][0] = 1.0
             matRotX[1][1] = np.cos(fTheta * 0.5)
             matRotX[1][2] = np.sin(fTheta * 0.5)
-            matRotX[2][1] = -1 * np.sin(fTheta * 0.5)
+            matRotX[2][1] = -1.0 * np.sin(fTheta * 0.5)
             matRotX[2][2] = np.cos(fTheta * 0.5)
-            matRotX[3][3] = 1
+            matRotX[3][3] = 1.0
 
             # rotate in Z axis
             triRotatedZ = tri.transform(matRotZ)

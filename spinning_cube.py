@@ -29,7 +29,7 @@ def main():
     fNear = 0.1
     fFar = 1000.0
     fFov = 90.0
-    fFovRad = 1.0 / np.tan(fFov * 0.5 / 180.0 * np.pi)
+    fFovRad = 1.0 / np.tan(np.radians(fFov) * 0.5)
     fAspectRatio = float(SCREEN_HEIGHT) / float(SCREEN_WIDTH)
 
     matProj = np.zeros((4,4))
@@ -88,20 +88,20 @@ def main():
             # calculate Z-rotation matrix for given time elapsed
             matRotZ = np.zeros((4,4))
             matRotZ[0][0] = np.cos(fTheta)
-            matRotZ[0][1] = np.sin(fTheta)
-            matRotZ[1][0] = -1.0 * np.sin(fTheta)
+            matRotZ[0][1] = -1.0 * np.sin(fTheta)
+            matRotZ[1][0] = np.sin(fTheta)
             matRotZ[1][1] = np.cos(fTheta)
             matRotZ[2][2] = 1.0
             matRotZ[3][3] = 1.0
 
             # calculate X-rotation matrix for given time elapsed
             matRotX = np.zeros((4,4))
-            matRotX[0][0] = 1
+            matRotX[0][0] = 1.0
             matRotX[1][1] = np.cos(fTheta * 0.5)
-            matRotX[1][2] = np.sin(fTheta * 0.5)
-            matRotX[2][1] = -1 * np.sin(fTheta * 0.5)
+            matRotX[1][2] = -1.0 * np.sin(fTheta * 0.5)
+            matRotX[2][1] = np.sin(fTheta * 0.5)
             matRotX[2][2] = np.cos(fTheta * 0.5)
-            matRotX[3][3] = 1
+            matRotX[3][3] = 1.0
 
             # rotate in Z axis
             triRotatedZ = tri.transform(matRotZ)

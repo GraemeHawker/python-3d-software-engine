@@ -44,7 +44,7 @@ class Vec3D(object):
         if new_vec[3] != 0.0:
             new_vec /= new_vec[3]
         return Vec3D(new_vec[:3])
-
+        
 
     def scale(self, width, height):
         """scale vertex to given screen height and width"""
